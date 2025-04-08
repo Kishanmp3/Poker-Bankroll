@@ -116,7 +116,7 @@ const StakingScreen = () => {
   if (loading) {
     return (
       <View style={styles.centerContainer}>
-        <ActivityIndicator size="small" color="#9B51E0" />
+        <ActivityIndicator size="small" color="#2962FF" />
       </View>
     );
   }
@@ -124,8 +124,18 @@ const StakingScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Staking</Text>
-        <Text style={styles.headerSubtitle}>Profit Sharing</Text>
+        <View style={styles.headerContent}>
+          <View>
+            <Text style={styles.headerTitle}>Staking</Text>
+            <Text style={styles.headerSubtitle}>Profit Sharing</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => setModalVisible(true)}
+          >
+            <MaterialCommunityIcons name="plus" size={24} color="#FFFFFF" />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <ScrollView
@@ -145,7 +155,7 @@ const StakingScreen = () => {
                     <MaterialCommunityIcons
                       name="account"
                       size={24}
-                      color="#9B51E0"
+                      color="#2962FF"
                       style={styles.icon}
                     />
                     <View>
@@ -162,11 +172,11 @@ const StakingScreen = () => {
                     onPress={() =>
                       handleToggleStatus(arrangement.id, arrangement.active)
                     }
-                    textColor={arrangement.active ? "#9B51E0" : "#FF5252"}
+                    textColor={arrangement.active ? "#2962FF" : "#FF5252"}
                     style={[
                       styles.statusButton,
                       {
-                        borderColor: arrangement.active ? "#9B51E0" : "#FF5252",
+                        borderColor: arrangement.active ? "#2962FF" : "#FF5252",
                       },
                     ]}
                   >
@@ -189,7 +199,7 @@ const StakingScreen = () => {
             <MaterialCommunityIcons
               name="handshake"
               size={24}
-              color="#9B51E0"
+              color="#2962FF"
             />
             <Text style={styles.modalTitle}>New Staking Arrangement</Text>
           </View>
@@ -199,8 +209,8 @@ const StakingScreen = () => {
             onChangeText={setFriend}
             style={styles.input}
             mode="outlined"
-            outlineColor="#9B51E0"
-            activeOutlineColor="#9B51E0"
+            outlineColor="#2962FF"
+            activeOutlineColor="#2962FF"
             textColor="#FFFFFF"
           />
           <TextInput
@@ -210,8 +220,8 @@ const StakingScreen = () => {
             keyboardType="numeric"
             style={styles.input}
             mode="outlined"
-            outlineColor="#9B51E0"
-            activeOutlineColor="#9B51E0"
+            outlineColor="#2962FF"
+            activeOutlineColor="#2962FF"
             textColor="#FFFFFF"
             right={<TextInput.Affix text="%" />}
           />
@@ -220,7 +230,7 @@ const StakingScreen = () => {
             mode="contained"
             onPress={handleAddArrangement}
             style={styles.addButton}
-            buttonColor="#9B51E0"
+            buttonColor="#2962FF"
           >
             Add Arrangement
           </Button>
@@ -243,7 +253,7 @@ const StakingScreen = () => {
           <Dialog.Actions>
             <Button
               onPress={() => setDeleteDialogVisible(false)}
-              textColor="#9B51E0"
+              textColor="#2962FF"
             >
               Cancel
             </Button>
@@ -262,14 +272,6 @@ const StakingScreen = () => {
       >
         {snackbarMessage}
       </Snackbar>
-
-      <FAB
-        icon="plus"
-        style={styles.fab}
-        onPress={() => setModalVisible(true)}
-        color="#FFFFFF"
-        customSize={56}
-      />
     </View>
   );
 };
@@ -277,12 +279,17 @@ const StakingScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   header: {
     paddingTop: Platform.OS === "ios" ? 60 : 40,
     paddingBottom: 20,
     paddingHorizontal: 20,
+  },
+  headerContent: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
   },
   headerTitle: {
     fontSize: 28,
@@ -293,29 +300,37 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     fontSize: 16,
-    color: "#9B51E0",
+    color: "#808080",
     opacity: 0.8,
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
+  },
+  addButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#2962FF",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 4,
   },
   centerContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
     padding: 20,
-    paddingBottom: 120, // Extra padding for FAB
   },
   cardContainer: {
     marginBottom: 16,
   },
   card: {
-    backgroundColor: "#1A0A2E",
+    backgroundColor: "#141414",
     borderRadius: 20,
   },
   cardContent: {
@@ -350,16 +365,10 @@ const styles = StyleSheet.create({
   },
   statusButton: {
     borderWidth: 1,
-  },
-  fab: {
-    position: "absolute",
-    right: 20,
-    bottom: 90, // Moved up to avoid nav bar
-    backgroundColor: "#9B51E0",
-    borderRadius: 28,
+    borderColor: "#2962FF",
   },
   modalContainer: {
-    backgroundColor: "#1A0A2E",
+    backgroundColor: "#141414",
     padding: 20,
     margin: 20,
     borderRadius: 20,
@@ -379,7 +388,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 16,
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   errorText: {
     color: "#FF5252",
@@ -387,11 +396,8 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
   },
-  addButton: {
-    marginTop: 8,
-  },
   dialog: {
-    backgroundColor: "#1A0A2E",
+    backgroundColor: "#141414",
   },
   dialogTitle: {
     color: "#FFFFFF",
@@ -405,7 +411,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   successSnackbar: {
-    backgroundColor: "#1A0A2E",
+    backgroundColor: "#141414",
   },
 });
 

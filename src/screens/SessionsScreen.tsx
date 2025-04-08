@@ -50,14 +50,14 @@ const SessionsScreen = () => {
   if (loading) {
     return (
       <View style={styles.centerContainer}>
-        <ActivityIndicator size="small" color="#9B51E0" />
+        <ActivityIndicator size="small" color="#2962FF" />
       </View>
     );
   }
 
   const renderSession = ({ item }: { item: any }) => {
     const profit = item.cash_out - item.buy_in;
-    const profitColor = profit >= 0 ? "#9B51E0" : "#FF5252";
+    const profitColor = profit >= 0 ? "#2962FF" : "#FF5252";
 
     return (
       <TouchableOpacity
@@ -71,7 +71,7 @@ const SessionsScreen = () => {
                 <MaterialCommunityIcons
                   name="map-marker"
                   size={20}
-                  color="#9B51E0"
+                  color="#2962FF"
                   style={styles.icon}
                 />
                 <Text style={styles.location}>{item.location}</Text>
@@ -93,7 +93,7 @@ const SessionsScreen = () => {
                 <MaterialCommunityIcons
                   name="cash"
                   size={18}
-                  color="#9B51E0"
+                  color="#2962FF"
                   style={styles.icon}
                 />
                 <Text style={styles.detail}>
@@ -104,7 +104,7 @@ const SessionsScreen = () => {
                 <MaterialCommunityIcons
                   name="cash-multiple"
                   size={18}
-                  color="#9B51E0"
+                  color="#2962FF"
                   style={styles.icon}
                 />
                 <Text style={styles.detail}>
@@ -115,7 +115,7 @@ const SessionsScreen = () => {
                 <MaterialCommunityIcons
                   name="clock-outline"
                   size={18}
-                  color="#9B51E0"
+                  color="#2962FF"
                   style={styles.icon}
                 />
                 <Text style={styles.detail}>Duration: {item.duration}h</Text>
@@ -126,7 +126,7 @@ const SessionsScreen = () => {
                 <MaterialCommunityIcons
                   name="note-text"
                   size={18}
-                  color="#9B51E0"
+                  color="#2962FF"
                   style={styles.icon}
                 />
                 <Text style={styles.notes}>{item.notes}</Text>
@@ -141,8 +141,18 @@ const SessionsScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Sessions</Text>
-        <Text style={styles.headerSubtitle}>Game History</Text>
+        <View style={styles.headerContent}>
+          <View>
+            <Text style={styles.headerTitle}>Sessions</Text>
+            <Text style={styles.headerSubtitle}>Game History</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => navigation.navigate("AddSession" as never)}
+          >
+            <MaterialCommunityIcons name="plus" size={24} color="#FFFFFF" />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <FlatList
@@ -168,7 +178,7 @@ const SessionsScreen = () => {
           <Dialog.Actions>
             <Button
               onPress={() => setDeleteDialogVisible(false)}
-              textColor="#9B51E0"
+              textColor="#2962FF"
             >
               Cancel
             </Button>
@@ -198,14 +208,6 @@ const SessionsScreen = () => {
           {error}
         </Snackbar>
       )}
-
-      <FAB
-        icon="plus"
-        style={styles.fab}
-        onPress={() => navigation.navigate("AddSession" as never)}
-        color="#FFFFFF"
-        customSize={56}
-      />
     </View>
   );
 };
@@ -213,13 +215,18 @@ const SessionsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   header: {
     paddingTop: Platform.OS === "ios" ? 60 : 40,
     paddingBottom: 20,
     paddingHorizontal: 20,
     borderBottomWidth: 0,
+  },
+  headerContent: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
   },
   headerTitle: {
     fontSize: 28,
@@ -230,26 +237,35 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     fontSize: 16,
-    color: "#9B51E0",
+    color: "#808080",
     opacity: 0.8,
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
+  },
+  addButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#2962FF",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 4,
   },
   centerContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   listContent: {
     padding: 20,
-    paddingBottom: 120, // Extra padding for FAB
+    paddingBottom: 120,
   },
   sessionContainer: {
     marginBottom: 16,
   },
   card: {
-    backgroundColor: "#1A0A2E",
+    backgroundColor: "#141414",
     borderRadius: 20,
   },
   cardContent: {
@@ -297,6 +313,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     opacity: 0.8,
+    color: "#808080",
   },
   detail: {
     fontSize: 14,
@@ -312,7 +329,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: "rgba(255, 255, 255, 0.1)",
+    borderTopColor: "#2A2A2A",
   },
   notes: {
     flex: 1,
@@ -322,15 +339,8 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
   },
-  fab: {
-    position: "absolute",
-    right: 20,
-    bottom: 90, // Moved up to avoid nav bar
-    backgroundColor: "#9B51E0",
-    borderRadius: 28,
-  },
   dialog: {
-    backgroundColor: "#1A0A2E",
+    backgroundColor: "#141414",
   },
   dialogTitle: {
     color: "#FFFFFF",
@@ -344,10 +354,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   successSnackbar: {
-    backgroundColor: "#1A0A2E",
+    backgroundColor: "#141414",
   },
   errorSnackbar: {
-    backgroundColor: "#FF5252",
+    backgroundColor: "#4A4A4A",
   },
 });
 

@@ -49,8 +49,8 @@ const SignInScreen = () => {
           mode="outlined"
           keyboardType="email-address"
           autoCapitalize="none"
-          outlineColor="#9B51E0"
-          activeOutlineColor="#9B51E0"
+          outlineColor="#808080"
+          activeOutlineColor="#808080"
           textColor="#FFFFFF"
         />
 
@@ -61,8 +61,8 @@ const SignInScreen = () => {
           style={styles.input}
           mode="outlined"
           secureTextEntry
-          outlineColor="#9B51E0"
-          activeOutlineColor="#9B51E0"
+          outlineColor="#808080"
+          activeOutlineColor="#808080"
           textColor="#FFFFFF"
         />
 
@@ -72,7 +72,7 @@ const SignInScreen = () => {
           style={styles.button}
           loading={loading}
           disabled={loading}
-          buttonColor="#9B51E0"
+          buttonColor="#808080"
         >
           Sign In
         </Button>
@@ -81,7 +81,7 @@ const SignInScreen = () => {
           mode="text"
           onPress={() => navigation.navigate("SignUp" as never)}
           style={styles.linkButton}
-          textColor="#9B51E0"
+          textColor="#808080"
         >
           Don't have an account? Sign Up
         </Button>
@@ -105,7 +105,7 @@ const SignInScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   content: {
     flex: 1,
@@ -118,13 +118,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   subtitle: {
-    color: "#9B51E0",
+    color: "#808080",
     textAlign: "center",
     marginBottom: 32,
   },
   input: {
     marginBottom: 16,
-    backgroundColor: "#1A0A2E",
+    backgroundColor: "#141414",
   },
   button: {
     marginTop: 16,
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   errorSnackbar: {
-    backgroundColor: "#9B51E0",
+    backgroundColor: "#808080",
   },
 });
 

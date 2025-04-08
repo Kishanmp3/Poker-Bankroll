@@ -25,7 +25,7 @@ const SettingsScreen = () => {
       <View style={styles.content}>
         <Surface style={styles.section}>
           <View style={styles.sectionHeader}>
-            <MaterialCommunityIcons name="account" size={24} color="#9B51E0" />
+            <MaterialCommunityIcons name="account" size={24} color="#2962FF" />
             <Text style={styles.sectionTitle}>Account Information</Text>
           </View>
 
@@ -37,7 +37,7 @@ const SettingsScreen = () => {
 
         <Surface style={styles.section}>
           <View style={styles.sectionHeader}>
-            <MaterialCommunityIcons name="logout" size={24} color="#FF5252" />
+            <MaterialCommunityIcons name="logout" size={24} color="#2962FF" />
             <Text style={styles.sectionTitle}>Account Actions</Text>
           </View>
 
@@ -45,7 +45,7 @@ const SettingsScreen = () => {
             mode="contained"
             onPress={handleSignOut}
             style={styles.signOutButton}
-            buttonColor="#FF5252"
+            buttonColor="#2962FF"
           >
             Sign Out
           </Button>
@@ -58,7 +58,7 @@ const SettingsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   header: {
     paddingTop: Platform.OS === "ios" ? 60 : 40,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     fontSize: 16,
-    color: "#9B51E0",
+    color: "#808080",
     opacity: 0.8,
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   section: {
-    backgroundColor: "#1A0A2E",
+    backgroundColor: "#141414",
     borderRadius: 20,
     padding: 20,
     marginBottom: 20,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    color: "#9B51E0",
+    color: "#808080",
     marginBottom: 4,
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,

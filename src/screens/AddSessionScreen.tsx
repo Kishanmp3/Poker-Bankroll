@@ -90,7 +90,7 @@ const AddSessionScreen = () => {
           <MaterialCommunityIcons
             name="plus-circle"
             size={28}
-            color="#9B51E0"
+            color="#808080"
           />
         </View>
 
@@ -100,7 +100,7 @@ const AddSessionScreen = () => {
               <MaterialCommunityIcons
                 name="calendar"
                 size={24}
-                color="#9B51E0"
+                color="#808080"
               />
               <Button
                 mode="text"
@@ -133,7 +133,7 @@ const AddSessionScreen = () => {
                 <MaterialCommunityIcons
                   name="map-marker"
                   size={24}
-                  color="#9B51E0"
+                  color="#808080"
                 />
                 <TextInput
                   placeholder="Location"
@@ -154,7 +154,7 @@ const AddSessionScreen = () => {
                 <MaterialCommunityIcons
                   name="cards"
                   size={24}
-                  color="#9B51E0"
+                  color="#808080"
                 />
                 <TextInput
                   placeholder="Game Type"
@@ -174,7 +174,7 @@ const AddSessionScreen = () => {
           <View style={styles.inputPair}>
             <Surface style={[styles.inputCard, styles.halfWidth]}>
               <View style={styles.inputContent}>
-                <MaterialCommunityIcons name="cash" size={24} color="#9B51E0" />
+                <MaterialCommunityIcons name="cash" size={24} color="#808080" />
                 <TextInput
                   placeholder="Buy-in"
                   value={buyIn}
@@ -198,7 +198,7 @@ const AddSessionScreen = () => {
                 <MaterialCommunityIcons
                   name="cash-multiple"
                   size={24}
-                  color="#9B51E0"
+                  color="#808080"
                 />
                 <TextInput
                   placeholder="Cash Out"
@@ -219,15 +219,15 @@ const AddSessionScreen = () => {
             </Surface>
           </View>
 
-          <Surface style={styles.inputCard}>
+          <Surface style={[styles.inputCard, styles.halfWidth]}>
             <View style={styles.inputContent}>
               <MaterialCommunityIcons
                 name="clock-outline"
                 size={24}
-                color="#9B51E0"
+                color="#808080"
               />
               <TextInput
-                placeholder="Duration"
+                placeholder="Duration (hours)"
                 value={duration}
                 onChangeText={setDuration}
                 keyboardType="numeric"
@@ -237,32 +237,28 @@ const AddSessionScreen = () => {
                 placeholderTextColor="rgba(255, 255, 255, 0.5)"
                 underlineColor="transparent"
                 activeUnderlineColor="transparent"
-                right={
-                  <TextInput.Affix text="hours" textStyle={styles.affixText} />
-                }
               />
             </View>
           </Surface>
 
-          <Surface style={[styles.inputCard, styles.notesCard]}>
+          <Surface style={styles.notesCard}>
             <View style={styles.inputContent}>
               <MaterialCommunityIcons
                 name="note-text"
                 size={24}
-                color="#9B51E0"
+                color="#808080"
               />
               <TextInput
                 placeholder="Notes (optional)"
                 value={notes}
                 onChangeText={setNotes}
-                style={[styles.input, styles.notesInput]}
+                multiline
+                style={styles.input}
                 mode="flat"
                 textColor="#FFFFFF"
                 placeholderTextColor="rgba(255, 255, 255, 0.5)"
                 underlineColor="transparent"
                 activeUnderlineColor="transparent"
-                multiline
-                numberOfLines={4}
               />
             </View>
           </Surface>
@@ -272,7 +268,7 @@ const AddSessionScreen = () => {
             onPress={handleSubmit}
             style={styles.submitButton}
             contentStyle={styles.submitButtonContent}
-            buttonColor="#9B51E0"
+            labelStyle={styles.submitButtonText}
             loading={loading}
             disabled={loading}
           >
@@ -287,7 +283,7 @@ const AddSessionScreen = () => {
         duration={3000}
         style={styles.errorSnackbar}
       >
-        {error}
+        <Text style={styles.errorText}>{error}</Text>
       </Snackbar>
     </KeyboardAvoidingView>
   );
@@ -296,56 +292,65 @@ const AddSessionScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
-    paddingTop: 20,
-    paddingBottom: 40,
+    padding: 20,
+  },
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 24,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: "700",
+    color: "#FFFFFF",
+    fontFamily: Platform.OS === "ios" ? "SF Pro Display" : "sans-serif",
+    letterSpacing: 0.5,
   },
   form: {
-    paddingHorizontal: 20,
     gap: 16,
   },
   dateCard: {
-    backgroundColor: "#1A0A2E",
-    borderRadius: 16,
+    backgroundColor: "#141414",
+    borderRadius: 20,
+    padding: 16,
     marginBottom: 16,
   },
   dateContent: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 16,
     gap: 12,
   },
   dateButton: {
     flex: 1,
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
   },
   dateButtonText: {
     fontSize: 16,
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
-    textAlign: "left",
+    letterSpacing: 0.5,
   },
   inputPair: {
     flexDirection: "row",
     gap: 16,
     marginBottom: 16,
   },
+  inputCard: {
+    backgroundColor: "#141414",
+    borderRadius: 20,
+    padding: 16,
+  },
   halfWidth: {
     flex: 1,
-  },
-  inputCard: {
-    backgroundColor: "#1A0A2E",
-    borderRadius: 16,
   },
   inputContent: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 16,
     gap: 12,
   },
   input: {
@@ -353,39 +358,44 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     fontSize: 16,
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
-    paddingHorizontal: 0,
+    letterSpacing: 0.5,
   },
   notesCard: {
+    backgroundColor: "#141414",
+    borderRadius: 20,
+    padding: 16,
     marginBottom: 24,
   },
   notesInput: {
     minHeight: 100,
   },
   affixText: {
-    color: "#FFFFFF",
-    opacity: 0.8,
+    color: "#808080",
+    fontSize: 16,
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
+    letterSpacing: 0.5,
   },
   submitButton: {
+    backgroundColor: "#2962FF",
     borderRadius: 12,
+    marginTop: 8,
   },
   submitButtonContent: {
-    height: 56,
+    height: 50,
+  },
+  submitButtonText: {
+    fontSize: 16,
+    fontWeight: "600",
+    fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
+    letterSpacing: 0.5,
   },
   errorSnackbar: {
-    backgroundColor: "#FF5252",
+    backgroundColor: "#4A4A4A",
   },
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    marginBottom: 8,
-  },
-  title: {
+  errorText: {
     color: "#FFFFFF",
-    fontWeight: "600",
+    fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
+    letterSpacing: 0.5,
   },
 });
 

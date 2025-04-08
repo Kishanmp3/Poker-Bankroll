@@ -43,7 +43,7 @@ const StatRow = ({
         <MaterialCommunityIcons
           name={icon}
           size={20}
-          color="#9B51E0"
+          color="#2962FF"
           style={styles.statIcon}
         />
       )}
@@ -59,7 +59,7 @@ const OverviewScreen = () => {
   if (loading) {
     return (
       <View style={styles.centerContainer}>
-        <ActivityIndicator size="small" color="#9B51E0" />
+        <ActivityIndicator size="small" color="#808080" />
       </View>
     );
   }
@@ -78,7 +78,7 @@ const OverviewScreen = () => {
         <MaterialCommunityIcons
           name="chart-box-outline"
           size={48}
-          color="#9B51E0"
+          color="#808080"
         />
         <Text style={styles.emptyText}>No sessions recorded yet</Text>
         <Text style={styles.emptySubtext}>
@@ -141,7 +141,7 @@ const OverviewScreen = () => {
       <View style={styles.content}>
         <Surface style={styles.section}>
           <View style={styles.sectionHeader}>
-            <MaterialCommunityIcons name="finance" size={24} color="#9B51E0" />
+            <MaterialCommunityIcons name="finance" size={24} color="#808080" />
             <Text style={styles.sectionTitle}>Summary</Text>
           </View>
           <StatRow
@@ -157,13 +157,13 @@ const OverviewScreen = () => {
           <StatRow
             label="Gross Profit"
             value={`$${stats.grossProfit.toLocaleString()}`}
-            color="#9B51E0"
+            color="#808080"
             icon="chart-line"
           />
           <StatRow
             label="Net Profit"
             value={`$${stats.netProfit.toLocaleString()}`}
-            color={stats.netProfit >= 0 ? "#9B51E0" : "#FF5252"}
+            color={stats.netProfit >= 0 ? "#808080" : "#4A4A4A"}
             icon="chart-areaspline"
           />
         </Surface>
@@ -173,7 +173,7 @@ const OverviewScreen = () => {
             <MaterialCommunityIcons
               name="cards-playing-outline"
               size={24}
-              color="#9B51E0"
+              color="#2962FF"
             />
             <Text style={styles.sectionTitle}>Sessions</Text>
           </View>
@@ -185,13 +185,13 @@ const OverviewScreen = () => {
           <StatRow
             label="Winning Sessions"
             value={stats.sessions.wins}
-            color="#9B51E0"
+            color="#2962FF"
             icon="trophy-outline"
           />
           <StatRow
             label="Losing Sessions"
             value={stats.sessions.losses}
-            color="#FF5252"
+            color="#4A4A4A"
             icon="alert"
           />
           <StatRow
@@ -200,14 +200,14 @@ const OverviewScreen = () => {
               (stats.sessions.wins / stats.sessions.total) *
               100
             ).toFixed(1)}%`}
-            color="#9B51E0"
+            color="#2962FF"
             icon="percent"
           />
         </Surface>
 
         <Surface style={styles.section}>
           <View style={styles.sectionHeader}>
-            <MaterialCommunityIcons name="clock" size={24} color="#9B51E0" />
+            <MaterialCommunityIcons name="clock" size={24} color="#2962FF" />
             <Text style={styles.sectionTitle}>Hours</Text>
           </View>
           <StatRow
@@ -218,7 +218,7 @@ const OverviewScreen = () => {
           <StatRow
             label="$/Hour"
             value={`$${stats.hours.rate.toFixed(2)}`}
-            color={stats.hours.rate >= 0 ? "#9B51E0" : "#FF5252"}
+            color={stats.hours.rate >= 0 ? "#2962FF" : "#4A4A4A"}
             icon="cash-100"
           />
         </Surface>
@@ -230,16 +230,15 @@ const OverviewScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   scrollContent: {
-    paddingBottom: 100,
+    flexGrow: 1,
   },
   header: {
     paddingTop: Platform.OS === "ios" ? 60 : 40,
     paddingBottom: 20,
     paddingHorizontal: 20,
-    backgroundColor: "#0A0515",
   },
   headerTitle: {
     fontSize: 28,
@@ -250,7 +249,7 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     fontSize: 16,
-    color: "#9B51E0",
+    color: "#808080",
     opacity: 0.8,
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
@@ -262,19 +261,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   section: {
-    marginBottom: 20,
-    padding: 20,
+    backgroundColor: "#141414",
     borderRadius: 20,
-    backgroundColor: "#1A0A2E",
+    padding: 20,
+    marginBottom: 20,
   },
   sectionHeader: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 20,
-    gap: 10,
+    gap: 12,
   },
   sectionTitle: {
     fontSize: 18,
@@ -287,20 +286,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 12,
+    marginBottom: 16,
   },
   statLabel: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
   },
   statIcon: {
-    opacity: 0.8,
+    marginRight: 8,
   },
   label: {
     fontSize: 14,
-    color: "#FFFFFF",
-    opacity: 0.8,
+    color: "#808080",
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
   },
@@ -308,36 +305,33 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#FFFFFF",
     fontWeight: "600",
-    fontFamily: Platform.OS === "ios" ? "SF Pro Display" : "sans-serif",
+    fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
   },
   errorText: {
-    color: "#FF5252",
+    color: "#4A4A4A",
+    fontSize: 16,
     textAlign: "center",
-    fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
-    letterSpacing: 0.5,
   },
   emptyContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 32,
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
+    padding: 20,
   },
   emptyText: {
-    color: "#FFFFFF",
     fontSize: 20,
-    marginTop: 16,
-    marginBottom: 8,
     fontWeight: "600",
+    color: "#FFFFFF",
+    marginTop: 16,
     fontFamily: Platform.OS === "ios" ? "SF Pro Display" : "sans-serif",
     letterSpacing: 0.5,
   },
   emptySubtext: {
-    color: "#9B51E0",
-    textAlign: "center",
-    paddingHorizontal: 32,
-    opacity: 0.8,
+    fontSize: 16,
+    color: "#808080",
+    marginTop: 8,
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
   },

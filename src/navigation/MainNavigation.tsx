@@ -44,10 +44,7 @@ const HomeHeader = () => {
         colors={["rgba(33, 150, 243, 0.15)", "transparent"]}
         style={styles.headerGradient}
       >
-        <Text
-          variant="headlineSmall"
-          style={[styles.headerAmount, { color: "#ffffff" }]}
-        >
+        <Text variant="headlineSmall" style={styles.headerTitle}>
           {timeOfDay()}
         </Text>
         <Text variant="bodyLarge" style={styles.headerDescription}>
@@ -82,7 +79,7 @@ const SessionsHeader = () => {
   return (
     <Surface style={styles.headerContainer}>
       <LinearGradient
-        colors={["rgba(33, 150, 243, 0.1)", "transparent"]}
+        colors={["rgba(41, 98, 255, 0.1)", "transparent"]}
         style={styles.headerGradient}
       >
         <Text variant="titleMedium" style={styles.headerSubtitle}>
@@ -156,7 +153,7 @@ const MainTabs = () => {
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: "#1A0A2E",
+          backgroundColor: "#141414",
           borderTopWidth: 0,
           elevation: 0,
           height: 80,
@@ -173,8 +170,8 @@ const MainTabs = () => {
           shadowRadius: 4.65,
           elevation: 8,
         },
-        tabBarActiveTintColor: "#9B51E0",
-        tabBarInactiveTintColor: "#FFFFFF60",
+        tabBarActiveTintColor: "#2962FF",
+        tabBarInactiveTintColor: "rgba(255, 255, 255, 0.4)",
         headerShown: false,
       }}
     >
@@ -282,27 +279,39 @@ const MainNavigation = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#0A0A0A",
+  },
   headerContainer: {
-    backgroundColor: "#121920",
+    backgroundColor: "#141414",
+    borderBottomWidth: 0,
     elevation: 0,
     shadowOpacity: 0,
-    borderBottomWidth: 0,
   },
   headerGradient: {
-    paddingTop: Platform.OS === "ios" ? 60 : 20,
-    paddingBottom: 16,
-    paddingHorizontal: 16,
+    paddingTop: Platform.OS === "ios" ? 60 : 40,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: "600",
+    color: "#FFFFFF",
+    fontFamily: Platform.OS === "ios" ? "SF Pro Display" : "sans-serif",
+    letterSpacing: 0.5,
   },
   headerSubtitle: {
-    color: "#8899aa",
-    marginBottom: 4,
-  },
-  headerAmount: {
-    fontWeight: "600",
+    fontSize: 16,
+    color: "#FFFFFF",
+    fontFamily: Platform.OS === "ios" ? "SF Pro Display" : "sans-serif",
+    letterSpacing: 0.5,
   },
   headerDescription: {
-    color: "#ffffff",
-    opacity: 0.9,
+    color: "#808080",
+    opacity: 0.8,
+    fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
+    letterSpacing: 0.5,
   },
 });
 

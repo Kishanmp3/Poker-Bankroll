@@ -38,7 +38,7 @@ const MonthScreen = () => {
   if (loading) {
     return (
       <View style={styles.centerContainer}>
-        <ActivityIndicator size="small" color="#9B51E0" />
+        <ActivityIndicator size="small" color="#808080" />
       </View>
     );
   }
@@ -69,7 +69,7 @@ const MonthScreen = () => {
   Object.entries(sessionsByDate).forEach(([date, stats]) => {
     markedDates[date] = {
       marked: true,
-      dotColor: stats.profit >= 0 ? "#9B51E0" : "#FF5252",
+      dotColor: stats.profit >= 0 ? "#2962FF" : "#FF5252",
     };
   });
 
@@ -78,7 +78,7 @@ const MonthScreen = () => {
     markedDates[selectedDate] = {
       ...markedDates[selectedDate],
       selected: true,
-      selectedColor: "#9B51E0",
+      selectedColor: "#2962FF",
     };
   }
 
@@ -94,7 +94,7 @@ const MonthScreen = () => {
           <MaterialCommunityIcons
             name="calendar-check"
             size={24}
-            color="#9B51E0"
+            color="#2962FF"
           />
           <Text style={styles.statsTitle}>
             {new Date(selectedDate).toLocaleDateString(undefined, {
@@ -111,7 +111,7 @@ const MonthScreen = () => {
               <MaterialCommunityIcons
                 name="cash"
                 size={20}
-                color="#9B51E0"
+                color="#2962FF"
                 style={styles.statIcon}
               />
               <Text style={styles.statLabelText}>Buy-in</Text>
@@ -125,7 +125,7 @@ const MonthScreen = () => {
               <MaterialCommunityIcons
                 name="cash-multiple"
                 size={20}
-                color="#9B51E0"
+                color="#2962FF"
                 style={styles.statIcon}
               />
               <Text style={styles.statLabelText}>Cash-out</Text>
@@ -141,7 +141,7 @@ const MonthScreen = () => {
               <MaterialCommunityIcons
                 name="chart-line"
                 size={20}
-                color="#9B51E0"
+                color="#2962FF"
                 style={styles.statIcon}
               />
               <Text style={styles.statLabelText}>Profit</Text>
@@ -149,7 +149,7 @@ const MonthScreen = () => {
             <Text
               style={[
                 styles.statValue,
-                { color: isProfit ? "#9B51E0" : "#FF5252" },
+                { color: isProfit ? "#2962FF" : "#FF5252" },
               ]}
             >
               ${stats.profit.toLocaleString()}
@@ -160,7 +160,7 @@ const MonthScreen = () => {
               <MaterialCommunityIcons
                 name="clock-outline"
                 size={20}
-                color="#9B51E0"
+                color="#2962FF"
                 style={styles.statIcon}
               />
               <Text style={styles.statLabelText}>Duration</Text>
@@ -187,22 +187,19 @@ const MonthScreen = () => {
             onDayPress={(day: DateData) => setSelectedDate(day.dateString)}
             markedDates={markedDates}
             theme={{
-              backgroundColor: "#1A0A2E",
-              calendarBackground: "#1A0A2E",
+              backgroundColor: "#141414",
+              calendarBackground: "#141414",
               textSectionTitleColor: "#FFFFFF",
-              selectedDayBackgroundColor: "#9B51E0",
+              selectedDayBackgroundColor: "#2962FF",
               selectedDayTextColor: "#FFFFFF",
-              todayTextColor: "#9B51E0",
+              todayTextColor: "#2962FF",
               dayTextColor: "#FFFFFF",
               textDisabledColor: "rgba(255, 255, 255, 0.4)",
-              dotColor: "#9B51E0",
+              dotColor: "#2962FF",
               selectedDotColor: "#FFFFFF",
-              arrowColor: "#9B51E0",
+              arrowColor: "#2962FF",
               monthTextColor: "#FFFFFF",
-              textMonthFontWeight: "bold",
-              textDayFontSize: 14,
-              textMonthFontSize: 16,
-              textDayHeaderFontSize: 14,
+              indicatorColor: "#2962FF",
               textMonthFontFamily:
                 Platform.OS === "ios" ? "SF Pro Display" : "sans-serif",
               textDayFontFamily:
@@ -221,13 +218,12 @@ const MonthScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   header: {
     paddingTop: Platform.OS === "ios" ? 60 : 40,
     paddingBottom: 20,
     paddingHorizontal: 20,
-    backgroundColor: "#0A0515",
   },
   headerTitle: {
     fontSize: 28,
@@ -238,7 +234,7 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     fontSize: 16,
-    color: "#9B51E0",
+    color: "#808080",
     opacity: 0.8,
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
@@ -247,31 +243,30 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#0A0515",
+    backgroundColor: "#0A0A0A",
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
     padding: 20,
-    paddingBottom: 100,
   },
   calendarCard: {
+    backgroundColor: "#141414",
     borderRadius: 20,
-    overflow: "hidden",
-    backgroundColor: "#1A0A2E",
+    padding: 10,
     marginBottom: 20,
   },
   statsCard: {
+    backgroundColor: "#141414",
     borderRadius: 20,
-    backgroundColor: "#1A0A2E",
     padding: 20,
   },
   statsHeader: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 20,
-    gap: 10,
+    gap: 12,
   },
   statsTitle: {
     fontSize: 18,
@@ -292,23 +287,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 4,
-    gap: 8,
   },
   statIcon: {
-    opacity: 0.8,
+    marginRight: 8,
   },
   statLabelText: {
     fontSize: 14,
-    color: "#FFFFFF",
-    opacity: 0.8,
+    color: "#808080",
     fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
   },
   statValue: {
     fontSize: 16,
-    fontWeight: "600",
     color: "#FFFFFF",
-    fontFamily: Platform.OS === "ios" ? "SF Pro Display" : "sans-serif",
+    fontWeight: "600",
+    fontFamily: Platform.OS === "ios" ? "SF Pro Text" : "sans-serif",
     letterSpacing: 0.5,
   },
 });
